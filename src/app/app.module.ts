@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeroesComponent} from './heroes/heroes.component';
@@ -55,6 +57,9 @@ import {
 } from '@angular/material';
 
 import {HttpClientModule} from '@angular/common/http';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { VersionChildComponent } from './version-child/version-child.component';
+import { VersionParentComponent } from './version-parent/version-parent.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +68,10 @@ import {HttpClientModule} from '@angular/common/http';
         HeroDetailComponent,
         MessagesComponent,
         DashboardComponent,
-        SabAutocompleteComponent
+        SabAutocompleteComponent,
+        HeroSearchComponent,
+        VersionChildComponent,
+        VersionParentComponent
     ],
     imports: [
         BrowserModule,
@@ -112,7 +120,13 @@ import {HttpClientModule} from '@angular/common/http';
         MatTooltipModule,
         MatTreeModule,
         ScrollingModule,
-        HttpClientModule
+        HttpClientModule,
+        // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+        // and returns simulated server responses.
+        // Remove it when a real server is ready to receive requests.
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, { dataEncapsulation: false }
+        )
     ],
     providers: [],
     bootstrap: [AppComponent]
