@@ -18,6 +18,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { StoreModule } from '@ngrx/store';
 import {
     MatAutocompleteModule,
     MatBadgeModule,
@@ -60,6 +61,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { VersionChildComponent } from './version-child/version-child.component';
 import { VersionParentComponent } from './version-parent/version-parent.component';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
     declarations: [
@@ -126,7 +128,8 @@ import { VersionParentComponent } from './version-parent/version-parent.componen
         // Remove it when a real server is ready to receive requests.
         HttpClientInMemoryWebApiModule.forRoot(
             InMemoryDataService, { dataEncapsulation: false }
-        )
+        ),
+        StoreModule.forRoot(reducers, { metaReducers })
     ],
     providers: [],
     bootstrap: [AppComponent]
