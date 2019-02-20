@@ -19,6 +19,7 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter.reducer';
 import {
     MatAutocompleteModule,
     MatBadgeModule,
@@ -62,6 +63,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { VersionChildComponent } from './version-child/version-child.component';
 import { VersionParentComponent } from './version-parent/version-parent.component';
 import { reducers, metaReducers } from './reducers';
+import { MyCounterComponent } from './my-counter/my-counter.component';
 
 @NgModule({
     declarations: [
@@ -73,7 +75,8 @@ import { reducers, metaReducers } from './reducers';
         SabAutocompleteComponent,
         HeroSearchComponent,
         VersionChildComponent,
-        VersionParentComponent
+        VersionParentComponent,
+        MyCounterComponent
     ],
     imports: [
         BrowserModule,
@@ -129,7 +132,8 @@ import { reducers, metaReducers } from './reducers';
         HttpClientInMemoryWebApiModule.forRoot(
             InMemoryDataService, { dataEncapsulation: false }
         ),
-        StoreModule.forRoot(reducers, { metaReducers })
+        StoreModule.forRoot({ count: counterReducer })
+
     ],
     providers: [],
     bootstrap: [AppComponent]
